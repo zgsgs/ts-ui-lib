@@ -1,0 +1,24 @@
+{
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/main.ts"],
+  "exclude": ["node_modules", "dist", "**/*.js"],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "moduleResolution": "node"
+  },
+  "paths": {
+    "/@/*": ["src/*"],
+    "/pages/*": ["src/pages/*"],
+    "/components/*": ["src/components/*"],
+    "/assets/*": ["src/assets/*"],
+    "/img/*": ["src/assets/image/*"],
+    "/utils/*": ["src/utils/*"],
+    "/plugins/*": ["src/plugins/*"],
+    "/requests/*": ["src/apis/requests/*"],
+    "/typings/*": ["src/typings/*"],
+    "/hooks/*": ["src/hooks/*"],
+    "/store/*": ["src/store/*"]
+  }
+}
