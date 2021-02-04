@@ -15,12 +15,26 @@ export default class Alert extends Template {
 
   constructor(options: IAlertOptions) {
     super();
-    this._duration = options.duration || DEFAULT_VALUES.DURATION;
-    this._header = options.header || DEFAULT_VALUES.HEADER;
-    this._text = options.text || DEFAULT_VALUES.TEXT;
+    const _options: IAlertOptions = Alert.mergeOptions(options);
+    this._duration = _options.duration || DEFAULT_VALUES.DURATION;
+    this._header = _options.header || DEFAULT_VALUES.HEADER;
+    this._text = _options.text || DEFAULT_VALUES.TEXT;
 
     this.render();
     this.bindEvent();
+  }
+
+  private static mergeOptions(options: IAlertOptions) {
+    const _defaultOptions: IAlertOptions = {
+      duration: DEFAULT_VALUES.DURATION as number,
+      header: DEFAULT_VALUES.HEADER as string,
+      text: DEFAULT_VALUES.TEXT as string,
+    };
+    if (!options) {
+      return _defaultOptions;
+    }
+
+    return Object.assign(_defaultOptions, options);
   }
 
   private bindEvent() {
@@ -43,23 +57,27 @@ export default class Alert extends Template {
     this._oText = this._oAlert.find('.alert-wrap p');
   }
 
-  public static create(options: IAlertOptions) {
+  public static create(options?: IAlertOptions) {
     return new Alert(options);
   }
 
-  public show(type: string, options: IAlertOptions) {
-    const { duration, header, text } = options;
-    let _type: UI_COLOR_TYPES = UI_COLOR_TYPES.PRIMARY;
-    for (let k in UI_COLOR_TYPES) {
-      if (UI_COLOR_TYPES[k] === type) {
-        _type = type as UI_COLOR_TYPES;
-      }
+  public show(type: string, options?: IAlertOptions) {
+    if (options) {
+      const { duration, header, text } = options;
+      duration && (this._duration = duration);
+      header && this._oHeader.html(header);
+      text && this._oText.html(text);
     }
 
+    let _type: UI_COLOR_TYPES = UI_COLOR_TYPES.PRIMARY;
+    if (_type) {
+      for (let k in UI_COLOR_TYPES) {
+        if (UI_COLOR_TYPES[k] === type) {
+          _type = type as UI_COLOR_TYPES;
+        }
+      }
+    }
     this._oAlert.addClass(_type);
-    duration && (this._duration = duration);
-    header && this._oHeader.html(header);
-    text && this._oText.html(text);
     this._oAlert.fadeIn(this._duration);
   }
 
