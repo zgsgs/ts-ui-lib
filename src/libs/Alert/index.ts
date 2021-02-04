@@ -1,26 +1,29 @@
 import Template from './Template';
-import { IAlertOptions } from './typings';
+import { DEFAULT_VALUES, IAlertOptions, UI_COLOR_TYPES } from './typings';
+import $ from 'jquery';
 
 export default class Alert extends Template {
+  private _duration: number;
   private _header: string;
   private _text: string;
-  private _oAlert: HTMLElement;
-  private _oXIcon: HTMLElement;
-  private _oInner: HTMLElement;
+  private _oAlert: JQuery<HTMLElement>;
+  private _oXIcon: JQuery<HTMLElement>;
+  private _oInner: JQuery<HTMLElement>;
 
   constructor(options: IAlertOptions) {
     super();
-    this._header = options.header || 'This is my Alert';
-    this._text = options.text || 'This is my Alert text';
+    this._duration = options.duration || DEFAULT_VALUES.DURATION;
+    this._header = options.header || DEFAULT_VALUES.HEADER;
+    this._text = options.text || DEFAULT_VALUES.TEXT;
 
     this.render();
     this.bindEvent();
   }
 
   private bindEvent() {
-    this._oXIcon.addEventListener('click', this.hide.bind(this));
-    this._oAlert.addEventListener('click', this.hide.bind(this));
-    this._oInner.addEventListener('click', e => e.stopPropagation(), false);
+    this._oXIcon.on('click', this.hide.bind(this));
+    this._oAlert.on('click', this.hide.bind(this));
+    this._oInner.on('click', e => e.stopPropagation());
   }
 
   private render() {
@@ -30,9 +33,9 @@ export default class Alert extends Template {
         text: this._text,
       })
     );
-    this._oAlert = document.querySelector('.alert') as HTMLElement;
-    this._oXIcon = this._oAlert.querySelector('.icon') as HTMLElement;
-    this._oInner = this._oAlert.querySelector('.inner') as HTMLElement;
+    this._oAlert = $('.alert');
+    this._oXIcon = $('.icon');
+    this._oInner = $('.inner');
   }
 
   public static create(options: IAlertOptions) {
@@ -40,10 +43,20 @@ export default class Alert extends Template {
   }
 
   public show(type: string, options: IAlertOptions) {
-    this._oAlert.className = 'alert show';
+    const { duration, header, text } = options;
+    let _type: UI_COLOR_TYPES = UI_COLOR_TYPES.PRIMARY;
+    for (let k in UI_COLOR_TYPES) {
+      if (UI_COLOR_TYPES[k] === type) {
+        _type = type as UI_COLOR_TYPES;
+      }
+    }
+
+    this._oAlert.addClass(_type);
+    duration && (this._duration = duration);
+    this._oAlert.fadeIn(this._duration);
   }
 
   public hide() {
-    this._oAlert.className = 'alert hide';
+    this._oAlert.fadeOut(this._duration);
   }
 }

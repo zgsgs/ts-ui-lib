@@ -5,8 +5,11 @@
     "baseUrl": "./",
     "target": "esnext",
     "module": "esnext",
-    "strict": true,
-    "moduleResolution": "node"
+    "strict": false,
+    "moduleResolution": "node",
+    // "resolveJsonModule": true,
+    // "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
   "paths": {
     "/@/*": ["src/*"],
