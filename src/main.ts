@@ -6,8 +6,8 @@ import './index.css';
 
   const alert = Alert.create({
     duration: 300,
-    header: 'Alert组件',
-    text: '内容',
+    header: 'Alert组件标题',
+    text: 'Alert组件内容',
   });
 
   const init = (): void => {

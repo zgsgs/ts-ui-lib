@@ -1,6 +1,7 @@
 import Template from './Template';
 import { DEFAULT_VALUES, IAlertOptions, UI_COLOR_TYPES } from './typings';
 import $ from 'jquery';
+import { h } from 'vue';
 
 export default class Alert extends Template {
   private _duration: number;
@@ -9,6 +10,8 @@ export default class Alert extends Template {
   private _oAlert: JQuery<HTMLElement>;
   private _oXIcon: JQuery<HTMLElement>;
   private _oInner: JQuery<HTMLElement>;
+  private _oHeader: JQuery<HTMLElement>;
+  private _oText: JQuery<HTMLElement>;
 
   constructor(options: IAlertOptions) {
     super();
@@ -36,6 +39,8 @@ export default class Alert extends Template {
     this._oAlert = $('.alert');
     this._oXIcon = $('.icon');
     this._oInner = $('.inner');
+    this._oHeader = this._oAlert.find('header h1');
+    this._oText = this._oAlert.find('.alert-wrap p');
   }
 
   public static create(options: IAlertOptions) {
@@ -53,6 +58,8 @@ export default class Alert extends Template {
 
     this._oAlert.addClass(_type);
     duration && (this._duration = duration);
+    header && this._oHeader.html(header);
+    text && this._oText.html(text);
     this._oAlert.fadeIn(this._duration);
   }
 
