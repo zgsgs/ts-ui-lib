@@ -41,3 +41,24 @@
   padding : 30px 15px;
   box-shadow : border-box;
 }
+
+.alert.primary .alert-header {
+  color : #FFFFFF;
+  background-color : #007BFF;
+  border-color : #007BFF;
+}
+.alert.success .alert-header {
+  color : #FFFFFF;
+  background-color : #28A745;
+  border-color : #28A745;
+}
+.alert.warning .alert-header {
+  color : #FFFFFF;
+  background-color : #FFC107;
+  border-color : #FFC107;
+}
+.alert.danger .alert-header {
+  color : #FFFFFF;
+  background-color : #DC3545;
+  border-color : #DC3545;
+}
