@@ -3,13 +3,23 @@
   "version": "0.0.1",
   "license": "MIT",
   "author": "Sacred Wood",
+  "main": "lib/index.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build:vite": "vite build",
+    "build:rollup": "rollup -c"
   },
   "dependencies": {
+    "@babel/core": "^7.13.1",
+    "@babel/preset-env": "^7.13.5",
+    "@babel/preset-typescript": "^7.13.0",
+    "@rollup/plugin-node-resolve": "^11.2.0",
     "@types/jquery": "^3.5.5",
     "jquery": "^3.5.1",
+    "rollup": "^2.39.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-serve": "^1.1.0",
     "vue": "^3.0.4"
   },
   "devDependencies": {
