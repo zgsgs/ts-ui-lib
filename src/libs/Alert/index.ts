@@ -1,7 +1,6 @@
 import Template from './Template';
 import { DEFAULT_VALUES, IAlertOptions, UI_COLOR_TYPES } from './typings';
 import $ from 'jquery';
-import { h } from 'vue';
 
 export default class Alert extends Template {
   private _duration: number;

@@ -16,3 +16,8 @@
 3. ts(1259) 模块 ""e:/VSCode/ts-ui-lib/node_modules/@types/jquery/index"" 只能在使用 "allowSyntheticDefaultImports" 标志时进行默认导入
 
 > 把`tsconfig.json`文件`compilerOptions.esModuleInterop`改为`true`,然后重新运行项目
+
+4. 项目打包,运行`yarn build`生成文件无法直接打开
+
+> 审查生成的 index.html 文件发现,js 脚本是以`type="module"`的方式引入的,这种方式只能在服务端加载,无法在本地以`file:///`的方式引入,想预览效果可以安装 VSCode 插件`Live Server`插件,以`Open With Live Server`方式打开;
+> 其次,生成的引入路径为`/_assets/index.7fe30cce.js`,该方式也无法正确引入,应改为`./_assets/index.7fe30cce.js`

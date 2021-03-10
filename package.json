@@ -6,8 +6,7 @@
   "main": "lib/index.js",
   "scripts": {
     "dev": "vite",
-    "build:vite": "vite build",
-    "build:rollup": "rollup -c",
+    "build": "vite build",
     "delete": "rimraf node_modules && rimraf dist"
   },
   "dependencies": {
