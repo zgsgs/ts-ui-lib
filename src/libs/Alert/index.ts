@@ -1,3 +1,11 @@
+/*
+ * @Author: jason <2087108700@qq.com>
+ * @Date: 2021-03-10 21:33:50
+ * @LastEditTime: 2021-05-26 00:56:45
+ * @LastEditors: jason
+ * @Description: Alert组件
+ * @FilePath: \ts-ui-lib\src\libs\Alert\index.ts
+ */
 import Template from './Template';
 import { DEFAULT_VALUES, IAlertOptions, UI_COLOR_TYPES } from './typings';
 import $ from 'jquery';
@@ -70,7 +78,7 @@ export default class Alert extends Template {
 
     let _type: UI_COLOR_TYPES = UI_COLOR_TYPES.PRIMARY;
     if (_type) {
-      for (let k in UI_COLOR_TYPES) {
+      for (const k in UI_COLOR_TYPES) {
         if (UI_COLOR_TYPES[k] === type) {
           _type = type as UI_COLOR_TYPES;
         }
