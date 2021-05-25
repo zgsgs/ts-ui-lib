@@ -2,6 +2,16 @@
 
 原生 TypeScript 开发的 UI 组件库,使用 vite 构建,rollup 打包,适用于各种前端框架.
 
+## 运行
+```shell
+# 安装依赖
+npm i
+# 本地运行调试
+npm run dev
+# 打包发布
+npm run build
+```
+
 ## 解决报错
 
 1. ts(2564) 属性“\_oAlert”没有初始化表达式，且未在构造函数中明确赋值。
