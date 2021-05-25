@@ -21,7 +21,7 @@ jobs:
     strategy:
       matrix:
         deno: ["v1.x", "canary"]
-        os: [macOS-latest, windows-latest, ubuntu-latest]
+        os: [ubuntu-latest]
 
     steps:
       - name: Setup repo
@@ -39,12 +39,6 @@ jobs:
 
       - name: Run linter
         run: deno lint
-
-      - name: Cache dependencies
-        run: deno cache deps.ts
-
-      - name: Run tests
-        run: deno test -A --unstable
       - name: Deploy
         uses: easingthemes/ssh-deploy@v2.1.6
         env:
