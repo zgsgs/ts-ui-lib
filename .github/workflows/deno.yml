@@ -21,7 +21,7 @@ jobs:
     strategy:
       matrix:
         deno: ["v1.x", "canary"]
-        os: [ubuntu-latest]
+        os: [windows-latest]
 
     steps:
       - name: Setup repo
